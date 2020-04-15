@@ -1,5 +1,5 @@
-{% set version = "3.15.6" %}
-{% set sha256 = "537e5249011ce90bdffae057994daedd89ae6351667f0aa89ab6918935caf5bc" %}
+{% set version = "7.0.3.1" %}
+{% set sha256 = "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c" %}
 
 package:
   name: epics-base
@@ -10,23 +10,44 @@ source:
   url: https://epics.anl.gov/download/base/base-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - config_site.diff  # [not win]
-    - config_common.diff  # [not win]
-    - config_readline.diff  # [linux]
+    - CONFIG_COMMON_install_permissions.patch
+    - force_readline_commandline_library.patch  # [linux]
 
 build:
   number: 0
+  run_exports:
+    - {{ pin_subpackage('epics-base', max_pin='x.x.x.x') }}
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - make  # [not win]
-    - m2w64-make  # [win]
-    - perl  # [win]
+    - make
+    - perl
+    - m2-patch      # [win]
+    # To run pre-build.py
+    - python >=3.6  # [win]
+  host:
+    - readline      # [linux]
+  run:
+    - perl
 
 test:
+  source_files:
+    - modules/pva2pva/loopback.conf
   commands:
+    - caget -h
+    - cainfo -h
+    - caput -h
+    - camonitor -h
+    - pvget -h
+    - pvput -h
+    - pvinfo -h
+    - pvlist -h
+    - softIoc -h
+    - softIocPVA -h
+    # p2p -h exits with 1... Use -C flag to test it instead
+    - p2p -C modules/pva2pva/loopback.conf
     - test -f ${PREFIX}/epics/bin/${EPICS_HOST_ARCH}/caget  # [not win]
     - test -f ${PREFIX}/epics/include/epicsVersion.h  # [not win]
     - test -f ${PREFIX}/epics/lib/${EPICS_HOST_ARCH}/libCom${SHLIB_EXT}  # [not win]
