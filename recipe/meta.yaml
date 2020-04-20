@@ -48,14 +48,15 @@ test:
     - softIocPVA -h
     # p2p -h exits with 1... Use -C flag to test it instead
     - p2p -C modules/pva2pva/loopback.conf
-    - test -f ${PREFIX}/epics/bin/${EPICS_HOST_ARCH}/caget  # [not win]
-    - test -f ${PREFIX}/epics/include/epicsVersion.h  # [not win]
-    - test -f ${PREFIX}/epics/lib/${EPICS_HOST_ARCH}/libCom${SHLIB_EXT}  # [not win]
-    - if %ARCH%==32 (set EPICS_HOST_ARCH=win32-x86) else if %ARCH%==64 (set EPICS_HOST_ARCH=windows-x64)  # [win]
-    - if not exist %PREFIX%\epics\bin\%EPICS_HOST_ARCH%\caget.exe exit 1  # [win]
-    - if not exist %PREFIX%\epics\bin\%EPICS_HOST_ARCH%\Com.dll exit 1  # [win]
-    - if not exist %PREFIX%\epics\lib\%EPICS_HOST_ARCH%\Com.lib exit 1  # [win]
-    - if not exist %PREFIX%\epics\include\epicsVersion.h exit 1  # [win]
+    - test -f ${EPICS_BASE}/bin/${EPICS_HOST_ARCH}/caget                # [not win]
+    - test -f ${EPICS_BASE}/include/epicsVersion.h                      # [not win]
+    - test -f ${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libCom${SHLIB_EXT}   # [not win]
+    - test -f ${PYEPICS_LIBCA}                                          # [not win]
+    - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\caget.exe exit 1  # [win]
+    - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\Com.dll exit 1    # [win]
+    - if not exist %EPICS_BASE%\lib\%EPICS_HOST_ARCH%\Com.lib exit 1    # [win]
+    - if not exist %EPICS_BASE%\include\epicsVersion.h exit 1           # [win]
+    - if not exist %PYEPICS_LIBCA% exit 1                               # [win]
 
 about:
   home: http://www.aps.anl.gov/epics
