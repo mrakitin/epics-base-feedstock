@@ -52,42 +52,10 @@ test:
     - test -f ${PYEPICS_LIBCA}                                          # [not win]
     - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\caget.exe exit 1  # [win]
     - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\Com.dll exit 1    # [win]
-    - if not exist %EPICS_BASE%\lib\%EPICS_HOST_ARCH%\Com.lib exit 1    # [win]
     - if not exist %EPICS_BASE%\include\epicsVersion.h exit 1           # [win]
     - if not exist %PYEPICS_LIBCA% exit 1                               # [win]
 
 outputs:
-  - name: epics-base-libs
-    build:
-      run_exports:
-        - {{ pin_subpackage('epics-base-libs', max_pin='x.x.x.x') }}
-    requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - make
-        - perl
-        - m2-patch      # [win]
-        # To run pre-build.py
-        - python >=3.6  # [win]
-    files:
-      - etc
-      - epics/lib
-      - epics/include
-      - epics/bin/*/*.dll  # [win]
-    test:
-      commands:
-        - test -f ${PYEPICS_LIBCA}                                              # [not win]
-        - test -f ${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libca${SHLIB_EXT}        # [not win]
-        - test -f ${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libpvAccess${SHLIB_EXT}  # [not win]
-        - test -f ${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libCom${SHLIB_EXT}       # [not win]
-        - test -f ${EPICS_BASE}/include/epicsVersion.h                          # [not win]
-        - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\pvAccess.dll exit 1   # [win]
-        - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\Com.dll exit 1        # [win]
-        - if not exist %EPICS_BASE%\lib\%EPICS_HOST_ARCH%\Com.lib exit 1        # [win]
-        - if not exist %EPICS_BASE%\include\epicsVersion.h exit 1               # [win]
-        - if not exist %PYEPICS_LIBCA% exit 1                                   # [win]
-
   - name: epics-base
     requirements:
       build:
@@ -101,19 +69,44 @@ outputs:
       host:
         - readline      # [linux]
       run:
-        - {{ pin_subpackage('epics-base-libs', max_pin="x.x.x.x") }}
         - perl
     files:
-      - epics/bin          # [not win]
-      - epics/bin/*/*.exe  # [win]
-      - epics/bin/*/*.pl   # [win]
-      - epics/bin/*/S99*   # [win]
+      - etc
+      - epics/bin
       - epics/cfg
       - epics/configure
       - epics/db
       - epics/dbd
       - epics/html
+      - epics/include
+      # windows .dll are under bin
+      - epics/lib/*/*.dylib  # [osx]
+      - epics/lib/*/*.so     # [linux]
+      - epics/lib/perl
+      - epics/lib/pkgconfig
       - epics/templates
+
+  - name: epics-base-static-libs
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - make
+        - perl
+        - m2-patch      # [win]
+        # To run pre-build.py
+        - python >=3.6  # [win]
+      run:
+        - {{ pin_subpackage('epics-base', max_pin="x.x.x.x") }}
+    files:
+      - epics/lib/*/*.lib  # [win]
+      - epics/lib/*/*.a    # [not win]
+    test:
+      commands:
+        - test -f ${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libca.a            # [not win]
+        - test -f ${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libCom.a           # [not win]
+        - if not exist %EPICS_BASE%\lib\%EPICS_HOST_ARCH%\ca.lib exit 1   # [win]
+        - if not exist %EPICS_BASE%\lib\%EPICS_HOST_ARCH%\Com.lib exit 1  # [win]
 
 about:
   home: http://www.aps.anl.gov/epics
