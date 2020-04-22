@@ -81,7 +81,7 @@ outputs:
       - epics/include
       # windows .dll are under bin
       - epics/lib/*/*.dylib  # [osx]
-      - epics/lib/*/*.so     # [linux]
+      - epics/lib/*/*.so*    # [linux]
       - epics/lib/perl
       - epics/lib/pkgconfig
       - epics/templates
