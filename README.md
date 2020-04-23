@@ -15,14 +15,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Appveyor</td>
-    <td>
-      <a href="https://ci.appveyor.com/project/conda-forge/epics-base-feedstock/branch/master">
-        <img alt="windows" src="https://img.shields.io/appveyor/ci/conda-forge/epics-base-feedstock/master.svg?label=Windows">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -50,17 +43,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>win_c_compilervs2008cxx_compilervs2008</td>
+              <td>win</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6856&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/epics-base-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2008cxx_compilervs2008" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_c_compilervs2015cxx_compilervs2015</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=6856&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/epics-base-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2015cxx_compilervs2015" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/epics-base-feedstock?branchName=master&jobName=win&configuration=win_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -69,7 +55,12 @@ Current build status
       </details>
     </td>
   </tr>
-![ppc64le disabled](https://img.shields.io/badge/ppc64le-disabled-lightgrey.svg)
+  <tr>
+    <td>Linux_ppc64le</td>
+    <td>
+      <img src="https://img.shields.io/badge/ppc64le-disabled-lightgrey.svg" alt="ppc64le disabled">
+    </td>
+  </tr>
 </table>
 
 Current release info
@@ -78,6 +69,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-epics--base-green.svg)](https://anaconda.org/conda-forge/epics-base) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/epics-base.svg)](https://anaconda.org/conda-forge/epics-base) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/epics-base.svg)](https://anaconda.org/conda-forge/epics-base) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/epics-base.svg)](https://anaconda.org/conda-forge/epics-base) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-epics--base--libs-green.svg)](https://anaconda.org/conda-forge/epics-base-libs) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/epics-base-libs.svg)](https://anaconda.org/conda-forge/epics-base-libs) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/epics-base-libs.svg)](https://anaconda.org/conda-forge/epics-base-libs) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/epics-base-libs.svg)](https://anaconda.org/conda-forge/epics-base-libs) |
 
 Installing epics-base
 =====================
@@ -88,10 +80,10 @@ Installing `epics-base` from the `conda-forge` channel can be achieved by adding
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `epics-base` can be installed with:
+Once the `conda-forge` channel has been enabled, `epics-base, epics-base-libs` can be installed with:
 
 ```
-conda install epics-base
+conda install epics-base epics-base-libs
 ```
 
 It is possible to list all of the versions of `epics-base` available on your platform with:
@@ -115,7 +107,7 @@ A feedstock is made up of a conda recipe (the instructions on what and how to bu
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.org/) it is possible to build and upload installable
+and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
 packages to the [conda-forge](https://anaconda.org/conda-forge)
 [Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
 
