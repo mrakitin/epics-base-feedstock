@@ -49,11 +49,11 @@ test:
     - test -f ${EPICS_BASE}/bin/${EPICS_HOST_ARCH}/caget                # [not win]
     - test -f ${EPICS_BASE}/include/epicsVersion.h                      # [not win]
     - test -f ${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libCom${SHLIB_EXT}   # [not win]
-    - test -f ${PYEPICS_LIBCA}                                          # [not win]
+    - test -f ${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libca${SHLIB_EXT}    # [not win]
     - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\caget.exe exit 1  # [win]
     - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\Com.dll exit 1    # [win]
+    - if not exist %EPICS_BASE%\bin\%EPICS_HOST_ARCH%\ca.dll exit 1     # [win]
     - if not exist %EPICS_BASE%\include\epicsVersion.h exit 1           # [win]
-    - if not exist %PYEPICS_LIBCA% exit 1                               # [win]
 
 outputs:
   - name: epics-base

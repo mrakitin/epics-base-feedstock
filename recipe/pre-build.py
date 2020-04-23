@@ -14,13 +14,10 @@ EPICS_HOST_ARCH = os.environ["EPICS_HOST_ARCH"]
 EPICS_BASE_VERSION = os.environ["PKG_VERSION"]
 EPICS_BASE = r"%CONDA_PREFIX%\epics"
 EPICS_BASE_HOST_BIN = rf"{EPICS_BASE}\bin\{EPICS_HOST_ARCH}"
-# dll are under bin (not lib)
-PYEPICS_LIBCA = rf"{EPICS_BASE_HOST_BIN}\ca.dll"
 variables = (
     "EPICS_BASE",
     "EPICS_HOST_ARCH",
     "EPICS_BASE_HOST_BIN",
-    "PYEPICS_LIBCA",
     "EPICS_BASE_VERSION",
 )
 activate_d = Path(PREFIX, "etc", "conda", "activate.d")

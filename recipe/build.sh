@@ -49,14 +49,12 @@ cat <<EOF > $PREFIX/etc/conda/activate.d/epics-base_activate.sh
 export EPICS_BASE="$EPICS_BASE"
 export EPICS_HOST_ARCH="$EPICS_HOST_ARCH"
 export EPICS_BASE_HOST_BIN="${EPICS_BASE}/bin/${EPICS_HOST_ARCH}"
-export PYEPICS_LIBCA="${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libca${SHLIB_EXT}"
 export EPICS_BASE_VERSION="${PKG_VERSION}"
 export PATH=\$EPICS_BASE_HOST_BIN:\$PATH
 EOF
 
 mkdir -p $PREFIX/etc/conda/deactivate.d
 cat <<EOF > $PREFIX/etc/conda/deactivate.d/epics-base_deactivate.sh
-unset PYEPICS_LIBCA
 unset EPICS_BASE
 unset EPICS_HOST_ARCH
 unset EPICS_BASE_VERSION
