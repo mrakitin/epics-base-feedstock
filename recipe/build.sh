@@ -30,8 +30,8 @@ CMPLR_CLASS = clang
 CC = x86_64-apple-darwin13.4.0-clang
 CCC = x86_64-apple-darwin13.4.0-clang++
 
-OP_SYS_CFLAGS += -isysroot ${CONDA_BUILD_SYSROOT} -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}
-OP_SYS_CXXFLAGS += -isysroot ${CONDA_BUILD_SYSROOT} -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}
+OP_SYS_CFLAGS += -isysroot \${CONDA_BUILD_SYSROOT} -mmacosx-version-min=\${MACOSX_DEPLOYMENT_TARGET}
+OP_SYS_CXXFLAGS += -isysroot \${CONDA_BUILD_SYSROOT} -mmacosx-version-min=\${MACOSX_DEPLOYMENT_TARGET}
 OP_SYS_LDFLAGS += -Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib
 OP_SYS_INCLUDES += -I${PREFIX}/include
 EOF
