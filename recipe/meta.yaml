@@ -14,7 +14,7 @@ source:
     - force_readline_commandline_library.patch  # [linux]
 
 build:
-  number: 1
+  number: 2
   run_exports:
     - {{ pin_subpackage('epics-base', max_pin='x.x.x.x') }}
 
@@ -28,7 +28,7 @@ requirements:
     # To run pre-build.py
     - python >=3.6  # [win]
   host:
-    - readline      # [linux]
+    - readline      # [unix]
 
 test:
   source_files:
@@ -67,7 +67,7 @@ outputs:
         # To run pre-build.py
         - python >=3.6  # [win]
       host:
-        - readline      # [linux]
+        - readline      # [unix]
       run:
         - perl
     files:
