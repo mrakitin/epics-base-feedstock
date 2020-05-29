@@ -21,3 +21,7 @@ perl:
 pin_run_as_build:
   perl:
     max_pin: x.x.x
+  readline:
+    max_pin: x
+readline:
+- '8.0'

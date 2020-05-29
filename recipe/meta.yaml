@@ -1,5 +1,5 @@
-{% set version = "7.0.3.1" %}
-{% set sha256 = "1de65638a806be6c0eebc0b7840ed9dd1a1a7879bcb6ab0da88a1e8e456b709c" %}
+{% set version = "7.0.4" %}
+{% set sha256 = "1f0597b91740742beec49ca1ca59e7b71f63483b7495068b4f0f685c0cda9e69" %}
 
 package:
   name: epics-base
@@ -14,7 +14,7 @@ source:
     - force_readline_commandline_library.patch  # [linux]
 
 build:
-  number: 2
+  number: 0
   run_exports:
     - {{ pin_subpackage('epics-base', max_pin='x.x.x.x') }}
 
