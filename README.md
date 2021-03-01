@@ -149,5 +149,6 @@ Feedstock Maintainers
 =====================
 
 * [@beenje](https://github.com/beenje/)
+* [@mrakitin](https://github.com/mrakitin/)
 * [@tacaswell](https://github.com/tacaswell/)
 
